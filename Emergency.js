@@ -188,7 +188,7 @@ function searchForWord() {
               var audio = new Audio('hazhaka.mp3');
               audio.play();
               document.querySelector("#areaBox").className = "areaBox"; 
-              setTimeout(AlertClose, 40000)
+              setTimeout(AlertClose, 20000)
               setTimeout(AlertIsOn = false, 60000)  
               AlertIsOn = true
             } else {
