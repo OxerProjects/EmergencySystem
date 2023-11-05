@@ -151,15 +151,6 @@ document.querySelector('#menu1').addEventListener("click", () => {
     OptionsOpen = true 
   }
 })
-
-document.querySelector('#menu2').addEventListener("click", () => {
-  document.querySelector('#screen').src = "https://www.mako.co.il/AjaxPage?jspName=embedHTML5video.jsp&galleryChannelId=3bf5c3a8e967f510VgnVCM2000002a0c10acRCRD&videoChannelId=8bf955222beab610VgnVCM100000700a10acRCRD&vcmid=1e2258089b67f510VgnVCM2000002a0c10acRCRD";
-})
-
-document.querySelector('#menu3').addEventListener("click", () => {
-  window.open('/Control.html', "mozillaTab");
-})
-
 // Auto Alert
 
 let AlertIsOn = false
@@ -168,7 +159,7 @@ function AlertClose() {
   document.querySelector("#areaBox").className = "areaBox-hide"
 }
 
-function searchForWord() {
+async function searchForWord() {
   var url = "/alerts.json";
   var needle = "בית דגן";
 
@@ -176,30 +167,29 @@ function searchForWord() {
   var xhr = new XMLHttpRequest();
 
   // Configure the request
-  xhr.open("GET", url, true);
+  await xhr.open("GET", url, true);
 
   // Set up a callback function to handle the response
-  xhr.onload = function() {
+  xhr.onload = async function() {
       if (xhr.status === 200) {
           // Parse the JSON response
-          var data = JSON.parse(xhr.responseText);
+          var data = await JSON.parse(xhr.responseText);
 
-          var Array = data && data.data;
+          var Array = await data && data.data;
 
-          var elements = Array[0].split(', ');
+          var elements = await Array[0].split(', ');
 
          var searchTerm = "בית דגן";
           var found = elements.includes(searchTerm);
 
           if (found) {
             if (AlertIsOn == false) {
-                console.log("אזעקות בבית דגן");
               alertStart()
               var audio = new Audio('hazhaka.mp3');
               audio.play();
               document.querySelector("#areaBox").className = "areaBox"; 
-              setTimeout(AlertClose, 20000)
-              setTimeout(AlertIsOn = false, 60000)  
+              setTimeout(AlertClose, 10000)
+              setTimeout(AlertIsOn = false, 20000)  
               AlertIsOn = true
             } else {
               if (time == 0) {
