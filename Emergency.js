@@ -169,7 +169,7 @@ function AlertClose() {
 }
 
 function searchForWord() {
-  var url = "https://www.mako.co.il/Collab/amudanan/alerts.json";
+  var url = "/alerts.json";
   var needle = "בית דגן";
 
   // Create a new XMLHttpRequest object
