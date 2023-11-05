@@ -157,7 +157,7 @@ document.querySelector('#menu2').addEventListener("click", () => {
 })
 
 document.querySelector('#menu3').addEventListener("click", () => {
-  window.open('Control.html', "mozillaWindow", "popup")
+  window.open('/Control.html', "mozillaTab");
 })
 
 // Auto Alert
