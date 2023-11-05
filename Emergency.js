@@ -152,26 +152,12 @@ document.querySelector('#menu1').addEventListener("click", () => {
   }
 })
 
-document.querySelector('#menu1').addEventListener("click", () => {
-  if(OptionsOpen == true) {
-    document.querySelector('#options').className = 'options';  
-    document.querySelector('#menu2').style.display = 'none';  
-    document.querySelector('#menu3').style.display = 'none';
-    document.querySelector('#menu4').style.display = 'flex';  
-    document.querySelector('.alertIcon3').style.transform = 'rotate(0deg)'; 
-    OptionsOpen = false  
-  } else {
-    document.querySelector('#options').className = 'options-open'; 
-    document.querySelector('#menu2').style.display = 'flex';   
-    document.querySelector('#menu3').style.display = 'flex';  
-    document.querySelector('#menu4').style.display = 'flex';  
-    document.querySelector('.alertIcon3').style.transform = 'rotate(180deg)'; 
-    OptionsOpen = true 
-  }
-})
-
 document.querySelector('#menu2').addEventListener("click", () => {
   document.querySelector('#screen').src = "https://www.mako.co.il/AjaxPage?jspName=embedHTML5video.jsp&galleryChannelId=3bf5c3a8e967f510VgnVCM2000002a0c10acRCRD&videoChannelId=8bf955222beab610VgnVCM100000700a10acRCRD&vcmid=1e2258089b67f510VgnVCM2000002a0c10acRCRD";
+})
+
+document.querySelector('#menu3').addEventListener("click", () => {
+  window.open('Control.html')
 })
 
 // Auto Alert
