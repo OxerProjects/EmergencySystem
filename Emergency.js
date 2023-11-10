@@ -160,7 +160,7 @@ function AlertClose() {
 }
 
 async function searchForWord() {
-  var url = "/alerts.json";
+  var url = "https://oxerprojects.github.io/EmergencySystem/alerts.json";
   var needle = "בית דגן";
 
   // Create a new XMLHttpRequest object
