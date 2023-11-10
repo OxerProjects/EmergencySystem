@@ -144,7 +144,7 @@ function AlertClose() {
 
 
 function updateAlerts() {
-  fetch('https://oxerprojects.github.io/EmergencySystem/alerts.json')
+  fetch('https://www.mako.co.il/Collab/amudanan/alerts.json')
   .then(response => {
       if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
