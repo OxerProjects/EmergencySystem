@@ -142,6 +142,59 @@ function AlertClose() {
   document.querySelector("#areaBox").className = "areaBox-hide"
 }
 
+async function chackData(data) {
+  if (data && data.data && data.data[0]) {
+    let areas = data.data[0];
+    const areasSplited = areas.split(" ,");
+
+    areasSplited.forEach((area) => {
+      if (area.includes("בית דגן")) {
+        if (AlertIsOn == false) {
+          // Alert View:
+          alertStart();
+          var audio = new Audio("./media/hazhaka.mp3");
+          audio.play();
+          setTimeout(AlertClose, 10000);
+          document.querySelector("#areaBox").className = "areaBox";
+          // Alert Data:
+          console.log("Data:", data.data[0]);
+          console.log(areasSplited);
+          AlertIsOn = true;
+        } else {
+          console.log("לא נמצאו אזעקות");
+          console.log(data.data[0]);
+          if (time === 0) {
+            AlertIsOn = false;
+          }
+        }
+      }
+    });
+  } else {
+  }
+
+  setTimeout(() => chackData(data), 1000);
+}
+
+function verifyDataChack() {
+  fetch('https://www.mako.co.il/Collab/amudanan/alerts.json')
+  .then(response => {
+      if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+  })
+  .then(data => {
+    var now = new Date();
+      console.log("לא נמצעו רקטות " + now.getHours() +":" + now.getMinutes() + ":" + now.getSeconds());
+  })
+  .catch(error => {
+      console.error('Error:', error);
+  });
+}
+
+setInterval(verifyDataChack, 120000)
+
+
 
 function updateAlerts() {
   fetch('https://www.mako.co.il/Collab/amudanan/alerts.json')
@@ -152,32 +205,7 @@ function updateAlerts() {
       return response.json();
   })
   .then(data => {
-      let areas = data.data[0]
-      const areasSplited = areas.split(" ,")
-      setInterval(function () {
-        console.log("לא נמצאו אזעקות");
-        console.log(data.data[0]);
-      }, 10000);
-      areasSplited.forEach(area => {
-        if (area.includes("בית דגן")) {
-          if (AlertIsOn == false) {
-            // Alert View:
-            alertStart()
-            var audio = new Audio('./media/hazhaka.mp3');
-            audio.play();
-            setTimeout(AlertClose, 10000)
-            document.querySelector("#areaBox").className = "areaBox";
-            // Alert Data: 
-            console.log('Data:', data.data[0]);
-            console.log(areasSplited)
-            AlertIsOn = true  
-          } else {
-            if (time === 0) {
-              AlertIsOn = false
-            }   
-          }
-        }  
-      });
+      chackData(data)
   })
   .catch(error => {
       console.error('Error:', error);
