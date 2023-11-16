@@ -144,10 +144,12 @@ function AlertClose() {
 
 async function chackData(data) {
   if (data && data.data && data.data[0]) {
-    let areas = data.data[0];
-    const areasSplited = areas.split(" ,");
-
-    areasSplited.forEach((area) => {
+    let areas = data.json();
+    areas.cities.forEach((area) => {
+      console.log('====================================');
+      console.log("system working:" + area);
+      console.log(areas.cities);
+      console.log('====================================');
       if (area.includes("בית דגן")) {
         if (AlertIsOn == false) {
           // Alert View:
